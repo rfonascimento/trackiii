@@ -1,89 +1,41 @@
-# angularjs-webpack
+# Angular 1.x WebPack + Babel workflow
 
-[![Dependency Status](https://david-dm.org/preboot/angularjs-webpack/status.svg)](https://david-dm.org/preboot/angular-webpack#info=dependencies) [![devDependency Status](https://david-dm.org/preboot/angularjs-webpack/dev-status.svg)](https://david-dm.org/preboot/angularjs-webpack#info=devDependencies)
+This workflow serves as a starting point for building Angular 1.x applications using WebPack.
 
-A complete, yet simple, starter for AngularJS using Webpack.
+It is a direct port of the amazing [react workflow](https://github.com/cesarandreu/web-app) of [Cesar Andreu](https://github.com/cesarandreu). All the credits goes for him.
 
-This workflow serves as a starting point for building AngularJS (1.x) applications using Webpack 2.x. Should be noted that apart from the pre-installed angular package, this workflow is pretty much generic.
+## Features
 
 * Heavily commented webpack configuration with reasonable defaults.
-* ES6, and ES7 support with babel.
+* ES6, and ES7 support with babel.js.
 * Source maps included in all builds.
-* Development server with live reload.
-* Production builds with cache busting.
+* Development server with hot reload when possible and refresh otherwise.
+* Production builds with cache busting and asset minification.
 * Testing environment using karma to run tests and jasmine as the framework.
 * Code coverage when tests are run.
-* No gulp and no grunt, just npm scripts.
+* No gulp and no grunt, just npm run-scripts.
 
->Warning: Make sure you're using the latest version of Node.js and NPM
+## Installation
 
-### Quick start
+To use it, just clone this repo and install the npm dependencies:
 
-> Clone/Download the repo then edit `app.js` inside [`/src/app/app.js`](/src/app/app.js)
-
-```bash
-# clone our repo
-$ git clone https://github.com/preboot/angularjs-webpack.git my-app
-
-# change directory to your app
-$ cd my-app
-
-# install the dependencies with npm
+```shell
+$ git clone https://github.com/Foxandxss/angular-webpack-workflow my_app
+$ cd my_app
 $ npm install
-
-# start the server
-$ npm start
 ```
 
-go to [http://localhost:8080](http://localhost:8080) in your browser.
+## Scripts
 
-# Table of Contents
+All scripts are run with `npm run [script]`, for example: `npm run test`.
 
-* [Getting Started](#getting-started)
-    * [Dependencies](#dependencies)
-    * [Installing](#installing)
-    * [Running the app](#running-the-app)
-    * [Developing](#developing)
-    * [Testing](#testing)
-* [License](#license)
+* `build` - generate a minified build to dist folder
+* `dev` - start development server, try it by opening `http://localhost:8080/`
+* `test` - run all tests
+* `test:live` - continuously run unit tests watching for changes
 
-# Getting Started
+See what each script does by looking at the `scripts` section in [package.json](./package.json).
 
-## Dependencies
+## Example
 
-What you need to run this app:
-* `node` and `npm` (Use [NVM](https://github.com/creationix/nvm))
-* Ensure you're running Node (`v4.1.x`+) and NPM (`2.14.x`+)
-
-## Installing
-
-* `fork` this repo
-* `clone` your fork
-* `npm install` to install all dependencies
-
-## Running the app
-
-After you have installed all dependencies you can now run the app with:
-```bash
-npm start
-```
-
-It will start a local server using `webpack-dev-server` which will watch, build (in-memory), and reload for you. The port will be displayed to you as `http://localhost:8080`.
-
-## Developing
-
-### Build files
-
-* single run: `npm run build`
-* build files and watch: `npm start`
-
-## Testing
-
-#### 1. Unit Tests
-
-* single run: `npm test`
-* live mode (TDD style): `npm run test-watch`
-
-# License
-
-[MIT](/LICENSE)
+To see how to structure an Angular 1.x application using this workflow, please check [this demo](https://github.com/Foxandxss/GermanWords-ng1-webpack).
