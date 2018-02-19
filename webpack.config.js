@@ -45,7 +45,7 @@ module.exports = function makeWebpackConfig() {
 
     // Output path from the view of the page
     // Uses webpack-dev-server in development
-    publicPath: isProd ? '/' : 'http://0.0.0.0:8080/',
+    publicPath: isProd ? '/' : 'http://localhost:8080/',
 
     // Filename for entry points
     // Only adds hash in build mode
@@ -96,19 +96,21 @@ module.exports = function makeWebpackConfig() {
       // Reference: https://github.com/postcss/postcss-loader
       // Postprocess your css with PostCSS plugins
       test: /\.css$/,
+      use: ['style-loader', 'css-loader']
       // Reference: https://github.com/webpack/extract-text-webpack-plugin
       // Extract css files in production builds
       //
       // Reference: https://github.com/webpack/style-loader
       // Use style-loader in development.
 
-      loader: isTest ? 'null-loader' : ExtractTextPlugin.extract({
+      /*loader: isTest ? 'null-loader' : ExtractTextPlugin.extract({
         fallbackLoader: 'style-loader',
         loader: [
           {loader: 'css-loader', query: {sourceMap: true}},
           {loader: 'postcss-loader'}
         ],
-      })
+      }),*/
+      // use: ['style-loader', 'css-loader']
     }, {
       // ASSET LOADER
       // Reference: https://github.com/webpack/file-loader
@@ -218,7 +220,8 @@ module.exports = function makeWebpackConfig() {
   config.devServer = {
     contentBase: './src/public',
     stats: 'minimal',
-    host: '0.0.0.0'
+    host: 'localhost',
+    disableHostCheck: true
   };
 
   return config;
