@@ -17,7 +17,7 @@ let app = () => {
 
 class AppCtrl {
   constructor() {
-    this.url = '';
+    this.url = '2';
   }
 }
 
