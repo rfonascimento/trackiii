@@ -1,20 +1,55 @@
 
+
+
 .graphic-occupation-chart
   font-weight: 700
+
+  #svg
+    transform: rotate(-90deg)
+
+  #svg circle
+    stroke-dashoffset: 0
+    transition: stroke-dashoffset 1s linear
+    stroke: #666
+    stroke-width: 1em
+
+  #svg #bar
+    stroke: $color-state-4-4
+
+  #svg #bar.state-4-4
+    stroke: $color-state-4-4
+
+  #svg #bar.state-4-3
+    stroke: $color-state-3-4
+
+  #svg #bar.state-4-2
+    stroke: $color-state-2-4
+
+  #svg #bar.state-4-1
+    stroke: $color-state-1-4
+
+  #cont
+    display: block
+    height: 250px
+    width: 250px
+    margin: 2em auto
+    box-shadow: 0 0 1em black
+    border-radius: 100%
+    position: relative
 
   .value
     position: absolute
     display: block
-    height: 160px
-    width: 160px
+    height: 250px
+    width: 250px
     left: 50%
     top: 50%
-    box-shadow: inset 0 0 1em black
+    /*box-shadow: inset 0 0 1em black*/
     /*content: attr(data-pct)"%"*/
-    margin-top: -80px
-    margin-left: -80px
+    margin-top: -125px
+    margin-left: -125px
     border-radius: 100%
-    line-height: 160px
+    line-height: 250px
     font-size: 4.0em
     font-weight: 900
     text-shadow: 0 0 0.5em black
@@ -23,23 +58,32 @@
       font-weight: normal
       font-size: 0.5em
 
-#svg
-  transform: rotate(-90deg)
 
-#svg circle
-  stroke-dashoffset: 0
-  transition: stroke-dashoffset 1s linear
-  stroke: #666
-  stroke-width: 1em
+#menus
+  .menu
+    background-color: $color-primary
+    border-radius: $border-radius
+    text-align: left
+    padding: 10px
 
-#svg #bar
-  stroke: #FF9F1E
+    .menu-state
+      text-align: center
+      .available
+        font-size: 32px
+      .total
+        font-size: 11px
+        color: darken(white, 10%)
 
-#cont
-  display: block
-  height: 300px
-  width: 300px
-  margin: 2em auto
-  box-shadow: 0 0 1em black
-  border-radius: 100%
-  position: relative
+      .menu-graph
+        width: 100%
+        height: 4px
+
+      label
+        font-size: 10px
+        color: darken(white, 10%)
+
+      .dash
+        border: 1px solid $color-background dashed
+
+      .food
+        font-size: 12px

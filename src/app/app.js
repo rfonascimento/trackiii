@@ -32,9 +32,9 @@ angular.module(MODULE_NAME, [])
     function getTemplate(){
       return [
         '<div id="cont" data-pct="100">',
-          '<svg id="svg" width="300" height="300" viewPort="0 0 100 100" version="1.1" xmlns="http://www.w3.org/2000/svg">',
-            '<circle r="90" cx="150" cy="150" fill="transparent" stroke-dasharray="565.48" stroke-dashoffset="0"></circle>',
-            '<circle id="bar" r="90" cx="150" cy="150" fill="transparent" stroke-dasharray="565.48" stroke-dashoffset="0"></circle>',
+          '<svg id="svg" width="250" height="250" viewPort="0 0 100 100" version="1.1" xmlns="http://www.w3.org/2000/svg">',
+            '<circle r="117" cx="125" cy="125" fill="transparent" stroke-dasharray="736" stroke-dashoffset="0"></circle>',
+            '<circle id="bar" r="117" cx="125" cy="125" fill="transparent" stroke-dasharray="736" stroke-dashoffset="0"></circle>',
           '</svg>',
           '<div class="value">',
           '</div>',
@@ -61,6 +61,7 @@ angular.module(MODULE_NAME, [])
 
           function updateGraph($modelvalue){
             var $circle = $element.children().children().children().eq(1);
+            var $bar    = $element.children().children().eq(0).children().eq(1);
 
             if (isNaN($modelvalue)) {
               $modelvalue = 100;
@@ -76,7 +77,18 @@ angular.module(MODULE_NAME, [])
 
               $circle.css({ strokeDashoffset: pct});
 
-              $element.children().attr('data-pct',$modelvalue);
+              $bar.removeAttr('class');
+              if ( $modelvalue > 75 ){
+                  $bar.attr('class', 'state-4-4');
+              }else if ( $modelvalue >50 && $modelvalue <= 75 ){
+                  $bar.attr('class', 'state-4-3');
+              }else if ( $modelvalue >25 && $modelvalue <= 50 ){
+                  $bar.attr('class', 'state-4-2');
+              }else if ( $modelvalue <= 25 ){
+                  $bar.attr('class', 'state-4-1');
+              }
+
+              // $element.children().attr('data-pct',$modelvalue);
               $element.children().children().eq(1)[0].innerHTML = "<div>"+$modelvalue+"<span class='unit'>%</span></div>";
             }
             return $modelvalue;
