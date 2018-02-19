@@ -1,4 +1,4 @@
 node_modules
 dist
 coverage
-npm-debug
+npm-debug.log
