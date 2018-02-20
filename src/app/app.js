@@ -18,7 +18,28 @@ let app = () => {
 class AppCtrl {
   constructor() {
     this.data = {
-      occupation: 55
+      occupation: {
+        percentage: 55,
+        time: 56
+      },
+      menu:{
+        meat: {
+          total: 200,
+          available: 10
+        },
+        fish: {
+          total: 200,
+          available: 55
+        },
+        vegetarian: {
+          total: 200,
+          available: 195
+        },
+        extra: {
+          total: 200,
+          available: 135
+        }
+      }
     }
   }
 }
@@ -36,7 +57,17 @@ angular.module(MODULE_NAME, [])
             '<circle r="117" cx="125" cy="125" fill="transparent" stroke-dasharray="736" stroke-dashoffset="0"></circle>',
             '<circle id="bar" r="117" cx="125" cy="125" fill="transparent" stroke-dasharray="736" stroke-dashoffset="0"></circle>',
           '</svg>',
-          '<div class="value">',
+          '<div class="inner">',
+            '<div class="arrow-top"></div>',
+            '<div class="percentage">',
+              '<div class="value">{{ data.percentage }}<span class="unit">%</span></div>',
+              '<legend>Tamanho da fila de espera</legend>',
+            '</div>',
+            '<div class="arrow-bottom"></div>',
+            '<div class="time">' +
+              '<div class="value">{{ data.time }}</div>',
+              '<legend>Tempo médio de espera</legend>',
+            '</div>',
           '</div>',
         '</div>'
       ].join('');
@@ -56,27 +87,29 @@ angular.module(MODULE_NAME, [])
           });
 
           if ( ngModelCtrl ){
-            ngModelCtrl.$formatters.push(updateGraph)
+            ngModelCtrl.$formatters.push(updateGraph);
           }
 
           function updateGraph($modelvalue){
-            var $circle = $element.children().children().children().eq(1);
+            var $circle = $element.children().children().eq(0).children(0).eq(1);
             var $bar    = $element.children().children().eq(0).children().eq(1);
 
-            if (isNaN($modelvalue)) {
-              $modelvalue = 100;
+            if (isNaN($modelvalue.percentage)) {
+              $modelvalue.percentage = 100;
             }
             else{
+              $scope.data = $modelvalue;
               var r = $circle.attr('r');
               var c = Math.PI*(r*2);
 
-              if ($modelvalue < 0) { $modelvalue = 0;}
-              if ($modelvalue > 100) { $modelvalue = 100;}
+              if ($modelvalue.percentage < 0) { $modelvalue.percentage = 0;}
+              if ($modelvalue.percentage > 100) { $modelvalue.percentage = 100;}
 
-              var pct = ((100-$modelvalue)/100)*c;
+              var pct = ((100-$modelvalue.percentage)/100)*c;
 
               $circle.css({ strokeDashoffset: pct});
 
+              /*
               $bar.removeAttr('class');
               if ( $modelvalue > 75 ){
                   $bar.attr('class', 'state-4-4');
@@ -87,9 +120,10 @@ angular.module(MODULE_NAME, [])
               }else if ( $modelvalue <= 25 ){
                   $bar.attr('class', 'state-4-1');
               }
+              */
 
               // $element.children().attr('data-pct',$modelvalue);
-              $element.children().children().eq(1)[0].innerHTML = "<div>"+$modelvalue+"<span class='unit'>%</span></div>";
+              // $element.children().children().eq(1)[0].innerHTML = "<div>"+$modelvalue+"<span class='unit'>%</span></div>";
             }
             return $modelvalue;
           }
@@ -97,6 +131,37 @@ angular.module(MODULE_NAME, [])
         }
       }
     }
+  }])
+  .directive('graphicMenu', ['$parse', function($parse){
+      return {
+        require: ['ngModel'],
+        compile: function (tElement, tAttrs){
+          return function postLink($scope, $element, $attrs, $controllers){
+            var ngModelCtrl = $controllers[0];
+
+            if ( ngModelCtrl ){
+              ngModelCtrl.$formatters.push(updateGraph);
+              $scope.$watch(function(){ return ngModelCtrl.$modelValue; }, updateGraph, true);
+            }
+
+
+            function updateGraph($modelvalue){
+              var graph = $element.children().children().eq(0).children().eq(1).children().eq(2).children().eq(0);
+              var percentage = null;
+
+              if ( angular.isObject($modelvalue) && $modelvalue.total && $modelvalue.available ){
+                percentage = 100-(($modelvalue.available*100) / $modelvalue.total);
+                graph.css('clip-path', 'inset(0px '+percentage+'% 0px 0px)')
+              }else{
+                graph.css('clip-path', 'inset(0px 0% 0px 0px)')
+              }
+
+              return $modelvalue;
+            }
+
+          }
+        }
+      }
   }]);
 
 export default MODULE_NAME;

@@ -10,59 +10,97 @@
 <main class="container">
   <section class="row justify-content-center">
     <div class="col-6">
-      <input type="number" data-ng-model="app.data.occupation">
+      <input type="number" data-ng-model="app.data.occupation.percentage">
+      <input type="number" data-ng-model="app.data.menu.meat.available">
       <div class="graphic-occupation-chart" data-graphic-occupation data-ng-model="app.data.occupation"></div>
     </div>
   </section>
-  <section id="menus" class="row justify-content-center">
-    <section class="col-md-3">
-      <div class="menu">
-        <h5>Carne</h5>
-        <div class="menu-state">
-          <span class="available">10</span>
-          <span class="total">/200</span>
-          <div class="menu-graph"></div>
-          <label>PRATOS DISPONÍVEIS</label>
-          <div class="dash"></div>
+  <section id="main" class="row justify-content-center">
+
+    <!-- Meat -->
+    <section class="col-md-3 menu" data-graphic-menu data-ng-model="app.data.menu.meat">
+      <div class="wrapper">
+        <div class="top">
+          <h5>Carne</h5>
+          <div class="menu-state">
+            <span class="available">{{ app.data.menu.meat.available }}</span>
+            <span class="total">/{{ app.data.menu.meat.total }}</span>
+            <div class="menu-graph">
+              <div class="gradient"></div>
+            </div>
+            <label>PRATOS DISPONÍVEIS</label>
+          </div>
+        </div>
+        <div class="dash"></div>
+        <div class="bottom">
+          <label class="main-menu">Lombinhos de porco com ananás e arroz</label>
         </div>
       </div>
-    </section>
-    <section class="col-md-3">
-      <div class="menu">
-        <h5>Peixe</h5>
-        <div class="menu-state">
-          <span class="available">10</span>
-          <span class="total">/200</span>
-          <div class="menu-graph"></div>
-          <label>PRATOS DISPONÍVEIS</label>
-          <div class="dash"></div>
+    </section><!-- /Meat -->
+
+    <!-- Fish -->
+    <section class="col-md-3 menu" data-graphic-menu data-ng-model="app.data.menu.fish">
+      <div class="wrapper">
+        <div class="top">
+          <h5>Peixe</h5>
+          <div class="menu-state">
+            <span class="available">{{ app.data.menu.fish.available }}</span>
+            <span class="total">/{{ app.data.menu.fish.total }}</span>
+            <div class="menu-graph">
+              <div class="gradient"></div>
+            </div>
+            <label>PRATOS DISPONÍVEIS</label>
+          </div>
+        </div>
+        <div class="dash"></div>
+        <div class="bottom">
+          <label class="main-menu">Bacalhau asssado no forno com batatas às rodelas</label>
         </div>
       </div>
-    </section>
-    <section class="col-md-3">
-      <div class="menu">
-        <h5>Vegetariano</h5>
-        <div class="menu-state">
-          <span class="available">10</span>
-          <span class="total">/200</span>
-          <div class="menu-graph"></div>
-          <label>PRATOS DISPONÍVEIS</label>
-          <div class="dash"></div>
+    </section><!-- /Fish -->
+
+    <!-- Vegetarian -->
+    <section class="col-md-3 menu" data-graphic-menu data-ng-model="app.data.menu.vegetarian">
+      <div class="wrapper">
+        <div class="top">
+          <h5>Vegetariano</h5>
+          <div class="menu-state">
+            <span class="available">{{ app.data.menu.vegetarian.available }}</span>
+            <span class="total">/{{ app.data.menu.vegetarian.total }}</span>
+            <div class="menu-graph">
+              <div class="gradient"></div>
+            </div>
+            <label>PRATOS DISPONÍVEIS</label>
+          </div>
+        </div>
+        <div class="dash"></div>
+        <div class="bottom">
+          <label class="main-menu">Risotto de quinoa com cogumelos e alho francês</label>
         </div>
       </div>
-    </section>
-    <section class="col-md-3">
-      <div class="menu">
-        <h5>Extra</h5>
-        <div class="menu-state">
-          <span class="available">10</span>
-          <span class="total">/200</span>
-          <div class="menu-graph"></div>
-          <label>PRATOS DISPONÍVEIS</label>
-          <div class="dash"></div>
+    </section><!-- /Vegetarian -->
+
+    <!-- Extra -->
+    <section class="col-md-3 menu" data-graphic-menu data-ng-model="app.data.menu.extra">
+      <div class="wrapper">
+        <div class="top">
+          <h5>Opção</h5>
+          <div class="menu-state">
+            <span class="available">{{ app.data.menu.extra.available }}</span>
+            <span class="total">/{{ app.data.menu.extra.total }}</span>
+            <div class="menu-graph">
+              <div class="gradient"></div>
+            </div>
+            <label>PRATOS DISPONÍVEIS</label>
+          </div>
+        </div>
+        <div class="dash"></div>
+        <div class="bottom">
+          <label class="main-menu">Salmão grelhado com vegetais salteados</label>
         </div>
       </div>
-    </section>
+    </section><!-- /Extra -->
+
   </section>
 </main>
 <footer>

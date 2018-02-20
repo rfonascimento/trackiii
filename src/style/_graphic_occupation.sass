@@ -37,6 +37,12 @@
     border-radius: 100%
     position: relative
 
+  .inner
+    position: absolute
+    top: 0px
+    height: 250px
+    width: 250px
+
   .value
     position: absolute
     display: block
@@ -57,33 +63,3 @@
     .unit
       font-weight: normal
       font-size: 0.5em
-
-
-#menus
-  .menu
-    background-color: $color-primary
-    border-radius: $border-radius
-    text-align: left
-    padding: 10px
-
-    .menu-state
-      text-align: center
-      .available
-        font-size: 32px
-      .total
-        font-size: 11px
-        color: darken(white, 10%)
-
-      .menu-graph
-        width: 100%
-        height: 4px
-
-      label
-        font-size: 10px
-        color: darken(white, 10%)
-
-      .dash
-        border: 1px solid $color-background dashed
-
-      .food
-        font-size: 12px
