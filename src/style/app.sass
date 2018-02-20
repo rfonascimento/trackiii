@@ -1,6 +1,7 @@
 @import 'vars'
 @import 'graphic_occupation'
 
+
 body
   font-family: 'Roboto', sans-serif
   color: white
@@ -14,7 +15,42 @@ header
 
   #logo
     margin-top: 10px
+    transition: margin 0.2s linear
+  #logo:active
+    margin-top: 11px
 
+  nav
+    button.menu
+      color: white
+      border: none
+      background: none
+      float: right
+      transition: color 0.2s linear
+      margin-top: 15px
+    button.menu:hover
+      color: $color-product
+
+button.bt-switch-view
+  background-color: $color-primary
+  padding: 4px 12px
+  color: white
+  transition: all 0.2s linear
+  margin-top: 40%
+  float: left
+
+  span
+    top: 3px
+    margin-right: 5px
+    font-size: 14px
+    transform: rotate(45deg)
+
+  label
+    margin: 0
+    font-size: 11px
+    cursor: pointer
+
+button.bt-switch-view:hover
+  background-color: lighten($color-primary, 5%)
 
 section#main
 
@@ -89,6 +125,38 @@ section#main
           margin-bottom: 0px
 
 
+.graphic-occupation-widget
+  position: relative
+  width: 250px
+  height: 250px
+  perspective: 800px
+  margin: 2em auto
+
+  .graphic-occupation-container
+    width: 100%
+    height: 100%
+    position: absolute
+    transform-style: preserve-3d
+    transition: transform 1s
+
+    .board
+      margin: 0
+      display: block
+      position: absolute
+      width: 100%
+      height: 100%
+      backface-visibility: hidden
+
+    .board.back
+      transform: rotateY( 180deg )
+      background-color: $color-footer
+      border: 1px solid $color-primary
+      border-radius: 5px
+      width: 500px
+      margin-left: -48%
+
+  .graphic-occupation-container.flipped
+    transform: rotateY( -180deg )
 
 footer
   width: 100%

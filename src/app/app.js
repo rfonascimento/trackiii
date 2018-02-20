@@ -6,6 +6,7 @@ import 'bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 import '../style/app.css';
+import 'open-iconic/font/css/open-iconic-bootstrap.css'
 
 let app = () => {
   return {
@@ -39,7 +40,11 @@ class AppCtrl {
           total: 200,
           available: 135
         }
-      }
+      },
+      activeViewFlipped: false
+    };
+    this.switchView = function(){
+      this.data.activeViewFlipped = !this.data.activeViewFlipped;
     }
   }
 }
@@ -61,12 +66,12 @@ angular.module(MODULE_NAME, [])
             '<div class="arrow-top"></div>',
             '<div class="percentage">',
               '<div class="value">{{ data.percentage }}<span class="unit">%</span></div>',
-              '<legend>Tamanho da fila de espera</legend>',
+              '<legend>OCUPAÇÃO FILA DE ESPERA</legend>',
             '</div>',
             '<div class="arrow-bottom"></div>',
             '<div class="time">' +
-              '<div class="value">{{ data.time }}</div>',
-              '<legend>Tempo médio de espera</legend>',
+              '<div class="value">{{ data.time | date:\'mm:ss\' }}<span class="oi oi-clock"></span></div>',
+              '<legend>TEMPO MÉDIO DE ESPERA</legend>',
             '</div>',
           '</div>',
         '</div>'
@@ -87,19 +92,19 @@ angular.module(MODULE_NAME, [])
           });
 
           if ( ngModelCtrl ){
-            ngModelCtrl.$formatters.push(updateGraph);
+            // ngModelCtrl.$formatters.push(updateGraph);
+            myscope.$watch(function(){ return ngModelCtrl.$modelValue; }, updateGraph ,true)
           }
 
           function updateGraph($modelvalue){
-            var $circle = $element.children().children().eq(0).children(0).eq(1);
-            var $bar    = $element.children().children().eq(0).children().eq(1);
+            myscope.data = $modelvalue;
+            var $bar = $element.children().children().eq(0).children(0).eq(1);
 
             if (isNaN($modelvalue.percentage)) {
               $modelvalue.percentage = 100;
             }
             else{
-              $scope.data = $modelvalue;
-              var r = $circle.attr('r');
+              var r = $bar.attr('r');
               var c = Math.PI*(r*2);
 
               if ($modelvalue.percentage < 0) { $modelvalue.percentage = 0;}
@@ -107,25 +112,23 @@ angular.module(MODULE_NAME, [])
 
               var pct = ((100-$modelvalue.percentage)/100)*c;
 
-              $circle.css({ strokeDashoffset: pct});
+              $bar.css({ strokeDashoffset: pct});
 
-              /*
-              $bar.removeAttr('class');
-              if ( $modelvalue > 75 ){
+              if ( $modelvalue.percentage > 75 ){
                   $bar.attr('class', 'state-4-4');
-              }else if ( $modelvalue >50 && $modelvalue <= 75 ){
+              }else if ( $modelvalue.percentage >50 && $modelvalue.percentage <= 75 ){
                   $bar.attr('class', 'state-4-3');
-              }else if ( $modelvalue >25 && $modelvalue <= 50 ){
+              }else if ( $modelvalue.percentage >25 && $modelvalue.percentage <= 50 ){
                   $bar.attr('class', 'state-4-2');
-              }else if ( $modelvalue <= 25 ){
+              }else if ( $modelvalue.percentage <= 25 ){
                   $bar.attr('class', 'state-4-1');
               }
-              */
+
 
               // $element.children().attr('data-pct',$modelvalue);
               // $element.children().children().eq(1)[0].innerHTML = "<div>"+$modelvalue+"<span class='unit'>%</span></div>";
             }
-            return $modelvalue;
+            // return $modelvalue;
           }
 
         }

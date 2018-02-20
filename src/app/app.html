@@ -1,18 +1,33 @@
 <header>
   <div class="container">
     <div class="row justify-content-center">
-      <div class="col-2">
+      <div class="col-4"></div>
+      <div class="col-4">
         <a href=""><img id="logo" src="/img/logo_trackiii.png" alt=""/></a>
+      </div>
+      <div class="col-4">
+        <nav>
+          <button type="button" class="btn oi oi-menu menu"></button>
+        </nav>
       </div>
     </div>
   </div>
 </header>
 <main class="container">
   <section class="row justify-content-center">
+    <div class="col-3"></div>
     <div class="col-6">
       <input type="number" data-ng-model="app.data.occupation.percentage">
       <input type="number" data-ng-model="app.data.menu.meat.available">
-      <div class="graphic-occupation-chart" data-graphic-occupation data-ng-model="app.data.occupation"></div>
+      <div class="graphic-occupation-widget">
+          <div class="graphic-occupation-container" data-ng-class="{ 'flipped': app.data.activeViewFlipped }">
+            <div class="board front graphic-occupation-chart" data-graphic-occupation data-ng-model="app.data.occupation"></div>
+            <div class="board back">VIDEO</div>
+          </div>
+      </div>
+    </div>
+    <div class="col-3">
+      <button class="btn bt-switch-view" type="button" data-ng-click="app.switchView()"><span class="oi oi-loop-circular"></span><label>TROCAR VISTA</label></button>
     </div>
   </section>
   <section id="main" class="row justify-content-center">
@@ -115,23 +130,3 @@
     </div>
   </div>
 </footer>
-
-<!--
-<main>
-  <section>
-    <div class="row justify-content-center">
-      <div class="col-2">
-        Graphics
-      </div>
-    </div>
-  </section>
-  <section>
-    <div class="row">
-      <section class="col-md-3">1</section>
-      <section class="col-md-3">2</section>
-      <section class="col-md-3">3</section>
-      <section class="col-md-3">4</section>
-    </div>
-  </section>
-</main>
--->
