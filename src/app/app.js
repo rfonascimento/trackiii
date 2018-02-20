@@ -19,6 +19,9 @@ let app = () => {
 class AppCtrl {
   constructor() {
     this.data = {
+      navmenu:{
+        active: false
+      },
       occupation: {
         percentage: 55,
         time: 56
