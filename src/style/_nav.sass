@@ -1,0 +1,47 @@
+.navigation-pannel
+  opacity: 0
+  height: 0
+  width: 100%
+  background-color: rgba($color-footer, 0.9)
+  transition: all 0.1s linear
+  position: absolute
+
+  button.close-nav
+    color: white
+    border: none
+    background: none
+    float: right
+    transition: color 0.2s linear
+    margin-top: 15px
+    font-size: 14px
+  button.menu:hover
+    color: $color-product
+
+  ul
+    margin-top: 20%
+    list-style: none
+    padding: 0
+    text-align: center
+    text-transform: uppercase
+
+    a
+      color: white
+      text-decoration: none
+      font-weight: 700
+      padding: 1em
+      font-size: 2em
+      transition: all 0.2s linear
+      border-top: 1px dashed black
+      border-bottom: 1px dashed black
+      display: block
+
+    a:hover
+      border-top: 1px dashed $color-product
+      border-bottom: 1px dashed $color-product
+      color: $color-product
+
+
+.navigation-pannel.show
+  opacity: 1
+  height: 100%
+  z-index: 1

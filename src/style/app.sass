@@ -1,5 +1,8 @@
 @import 'vars'
 @import 'graphic_occupation'
+@import 'header'
+@import 'nav'
+@import 'footer'
 
 /* STICKY FOOTER */
 *
@@ -22,109 +25,73 @@ html, body
 
 /* /STICKY FOOTER */
 
+
 body
   font-family: 'Roboto', sans-serif
   color: white
   text-align: center
   background: $color-background
 
-header
-  background: $color-primary
-  height: 60px
-  border-bottom: 1px solid darken($color-primary, 50%)
+/* OVERVIEW SECTION */
+main section#overview
 
-  #logo
-    margin-top: 10px
-    transition: margin 0.2s linear
-  #logo:active
-    margin-top: 11px
-
-  nav
-    button.menu
-      color: white
-      border: none
-      background: none
-      float: right
-      transition: color 0.2s linear
-      margin-top: 15px
-    button.menu:hover
-      color: $color-product
-
-
-button.bt-switch-view
-  background-color: $color-primary
-  padding: 4px 12px
-  color: white
-  transition: all 0.2s linear
-  margin-top: 40%
-  float: left
-
-  span
-    top: 3px
-    margin-right: 5px
-    font-size: 14px
-    transform: rotate(45deg)
-
-  label
-    margin: 0
-    font-size: 11px
-    cursor: pointer
-
-button.bt-switch-view:hover
-  background-color: lighten($color-primary, 5%)
-
-.navigation-pannel
-  opacity: 0
-  height: 0
-  width: 100%
-  background-color: rgba($color-footer, 0.8)
-  transition: all 0.1s linear
-  position: absolute
-
-  button.close-nav
+  button.bt-switch-view
+    background-color: $color-primary
+    padding: 4px 12px
     color: white
-    border: none
-    background: none
-    float: right
-    transition: color 0.2s linear
-    margin-top: 15px
-    font-size: 14px
-  button.menu:hover
-    color: $color-product
+    transition: all 0.2s linear
+    margin-top: 40%
+    float: left
 
-  ul
-    margin-top: 20%
-    list-style: none
-    padding: 0
-    text-align: center
-    text-transform: uppercase
+    span
+      top: 3px
+      margin-right: 5px
+      font-size: 14px
+      transform: rotate(45deg)
 
-    li
-      font-weight: 700
-      padding: 1em
-      font-size: 2em
-      transition: all 0.2s linear
-      border-top: 1px dashed black
-      border-bottom: 1px dashed black
+    label
+      margin: 0
+      font-size: 11px
+      cursor: pointer
 
-      a
-        color: white
-        text-decoration: none
+  button.bt-switch-view:hover
+    background-color: lighten($color-primary, 5%)
 
-    li:hover
-      border-top: 1px dashed $color-product
-      border-bottom: 1px dashed $color-product
+  .graphic-occupation-widget
+    position: relative
+    width: 250px
+    height: 250px
+    perspective: 800px
+    margin: 2em auto
 
-      a
-        color: $color-product
+  .graphic-occupation-container
+    width: 100%
+    height: 100%
+    position: absolute
+    transform-style: preserve-3d
+    transition: transform 1s
 
+    .board
+      margin: 0
+      display: block
+      position: absolute
+      width: 100%
+      height: 100%
+      backface-visibility: hidden
 
-.navigation-pannel.show
-  opacity: 1
-  height: 100%
-  z-index: 1
+    .board.back
+      transform: rotateY( 180deg )
+      background-color: $color-footer
+      border: 1px solid $color-primary
+      border-radius: 5px
+      width: 500px
+      margin-left: -48%
 
-section#main
+  .graphic-occupation-container.flipped
+    transform: rotateY( -180deg )
+
+/* MENU SECTION */
+main section#main
 
   margin: 1em auto
 
@@ -197,50 +164,3 @@ section#main
           color: $color-typography-grey
           margin-bottom: 0px
 
-
-.graphic-occupation-widget
-  position: relative
-  width: 250px
-  height: 250px
-  perspective: 800px
-  margin: 2em auto
-
-  .graphic-occupation-container
-    width: 100%
-    height: 100%
-    position: absolute
-    transform-style: preserve-3d
-    transition: transform 1s
-
-    .board
-      margin: 0
-      display: block
-      position: absolute
-      width: 100%
-      height: 100%
-      backface-visibility: hidden
-
-    .board.back
-      transform: rotateY( 180deg )
-      background-color: $color-footer
-      border: 1px solid $color-primary
-      border-radius: 5px
-      width: 500px
-      margin-left: -48%
-
-  .graphic-occupation-container.flipped
-    transform: rotateY( -180deg )
-
-footer
-  width: 100%
-  height: 60px
-  background: $color-footer
-
-  .altice-labs-logo
-    float: right
-    margin-top: 13px
-
-  .copy
-    font-size: 12px
-    margin-top: 20px
-    font-weight: 700
